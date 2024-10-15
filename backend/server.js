@@ -1,9 +1,7 @@
 //A  basic express server
 import express from 'express';//Import Express framework
-import axios from 'axios';// Import Axios for making HTTP requests
 import dotenv from 'dotenv';// For environment variables
 import trafficRoutes from './traffic.js';
-
 
 dotenv.config();  //Load environment variables.
 
