@@ -11,9 +11,14 @@ const traffic = require("./traffic.js");
 // dotenv.config();  //Load environment variables.
 
 const app = express(); // Creating an instance of Express
+const corsOptions = {
+    origin: ["http://localhost:5173"], //where the app is running
+  };
+
+  
 const port = 3000; //Port 3000 is set
 
-app.use(express.json()); //Middlewate to parse JSON request bodies
+app.use(cors(corsOptions)); //Middlewate to parse JSON request bodies
 
 // Use the traffic routes
 app.use('/api/traffic', traffic); //setting up a base route first
