@@ -1,19 +1,18 @@
-import express from 'express';
-import dotenv from 'dotenv';//Import dotenv to access environment variables
-import fetch from 'node-fetch';//// Import fetch for API requests
+// import express from 'express';
+// import dotenv from 'dotenv';//Import dotenv to access environment variables
+const express = require("express");
+ 
 
-dotenv.config(); // Load environment variables
+// dotenv.config(); // Load environment variables
 
 
 const router = express.Router();
 
 // Traffic routes will be defined here. 
-//When someone visits URL: /api/traffic, the server will respond with the message 
-//"Traffic updates will be here."
+//When someone visits URL: /api/traffic, the server will respond with the Traffic updates 
 
 router.get('/', (req, res) => {
     const API_URL = 'https://api.trafikinfo.trafikverket.se/v2/data.json';
-    const auth_key = process.env.AUTH_KEY; 
     
    // Fetch data from the API
     
@@ -28,11 +27,8 @@ router.get('/', (req, res) => {
                     <INCLUDE>Warning</INCLUDE>\n
                     <INCLUDE>ConditionInfo</INCLUDE>\n
             </QUERY>
-            </REQUEST>`
-
-
+                   </REQUEST>`
 })
-
   
     .then(response => response.json())
     .then(data => {
@@ -47,4 +43,5 @@ router.get('/', (req, res) => {
 
 
 // Export the router
-export default router;
+// export default router;
+module.exports=router;
