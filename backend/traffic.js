@@ -15,22 +15,29 @@ router.get('/', (req, res) => {
     const API_URL = 'https://api.trafikinfo.trafikverket.se/v2/data.json';
     const auth_key = process.env.AUTH_KEY; 
     
-    // Fetch data from the API
-
+   // Fetch data from the API
+    
     fetch(API_URL, {
         method: 'POST',
-             body:`<REQUEST>
-        <LOGIN authenticationkey="6a5bbb279beb4d089d5d158e5adddb96"/>
-        <QUERY objecttype="TrainAnnouncement" schemaversion="1.9" limit="10">
-          <FILTER></FILTER>
-        </QUERY>
-      </REQUEST>`
+      
+          body :`<REQUEST>
+             <LOGIN authenticationkey="6a5bbb279beb4d089d5d158e5adddb96" />
+             <QUERY objecttype="RoadCondition"  schemaversion="1.2" limit="10">
+                    <INCLUDE>ConditionText</INCLUDE>\n
+                    <INCLUDE>LocationText</INCLUDE>\n
+                    <INCLUDE>Warning</INCLUDE>\n
+                    <INCLUDE>ConditionInfo</INCLUDE>\n
+            </QUERY>
+            </REQUEST>`
 
-        
-    })
+
+})
+
+  
     .then(response => response.json())
     .then(data => {
-        res.json(data); // Send the data as a response
+        res.json(data);
+        
     })
     .catch(error => {
         console.error('Error fetching data:', error.message);
