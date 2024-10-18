@@ -6,6 +6,8 @@ const corsOptions = {
   origin: ["http://localhost:5173"], //where the app is running
 };
 
+require("dotenv").config();
+
 app.use(cors(corsOptions));
 
 app.get("/api", (req, res) => {
