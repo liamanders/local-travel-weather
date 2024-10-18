@@ -31,17 +31,7 @@ export const Departures = () => {
           </tr>
         </thead>
         <tbody>
-          {departures
-            .filter((_, index) => index < 5)
-            .map((departure: any) => (
-              <tr key={departure.ActivityId}>
-                <td>{departure.FromLocation[0].LocationName}</td>
-                <td>{departure.ToLocation[0].LocationName}</td>
-                <td>{departure.TrackAtLocation}</td>
-                <td>{departure.DepartureDateOTN}</td>
-                <td>{departure.TypeOfTraffic[0].Description}</td>
-              </tr>
-            ))}
+          <td>here goes the content</td>
         </tbody>
       </table>
     </div>
