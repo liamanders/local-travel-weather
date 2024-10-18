@@ -9,6 +9,7 @@ const app = express();
 const corsOptions = {
   origin: ["http://localhost:5173"], //where the app is running
 };
+
 app.use(cors(corsOptions));
 
 app.use("/api/departures", departures);
