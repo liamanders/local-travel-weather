@@ -1,5 +1,5 @@
 import './App.css'
-
+import {Traffic} from "./traffic";
 function App() 
   {
     
@@ -30,7 +30,7 @@ function App()
               <h2>LOCAL WEATHER</h2>
             </div>
             <div className='trafficCont'>
-              <h2>TRAFFIC UPDATES</h2>
+              <Traffic/>
             </div>
           </div>
         </main>

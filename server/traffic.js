@@ -1,44 +1,64 @@
 // import express from 'express';
-// import dotenv from 'dotenv';//Import dotenv to access environment variables
 const express = require("express");
- 
-
-// dotenv.config(); // Load environment variables
-
 
 const router = express.Router();
 
 // Traffic routes will be defined here. 
 //When someone visits URL: /api/traffic, the server will respond with the Traffic updates 
-
 router.get('/', (req, res) => {
     const API_URL = 'https://api.trafikinfo.trafikverket.se/v2/data.json';
     const long = "592554"; //Will be changed later on, hardcoding some values now.
     const lat = "6500334";  //Will be changed later on, hardcoding some values now.
+    const authenticationKey = process.env.AUTH_KEY;
    
-   
-    // Fetch data from the API within a certain radius(1000m in this case).
-    
+    if (!authenticationKey) {
+        return res.status(500).json({ error: 'Authentication key not found' });
+    }
+
+    // Fetch data from the API within a certain radius(10000m in this case). 
+    //Code copied from Trafikverkets example code. Object type is Situation here, as the relavant traffic data is in Situtaion endpoint. 
     fetch(API_URL, {
         method: 'POST',
       
           body :`<REQUEST>
-             <LOGIN authenticationkey="6a5bbb279beb4d089d5d158e5adddb96" />
-             <QUERY objecttype="Situation" schemaversion="1.5" limit="10">
+             <LOGIN authenticationkey="${authenticationKey}" />
+             <QUERY objecttype="Situation" schemaversion="1.5" >
             <FILTER>
             <WITHIN name="Deviation.Geometry.Point.SWEREF99TM" shape="center"
-                        value="${long} ${lat}" radius="1000" />
+                        value="${long} ${lat}" radius="10000" />
             </FILTER>
         </QUERY>
                    </REQUEST>`
 })
 
   
-    .then(response => response.json())
+    .then(response => response.json()) //parsing the response into JSON format. 
 
     .then(data => {
-        res.json(data);
-        
+
+        //Situtation end point's response is in this path : "RESPONSE":{"RESULT":[{"Situation":.....
+        //Result is an array of Situation. "RESULT":[{"Situation":[{}, {}, {}...], so we will store RESULT in results. 
+        const results = data.RESPONSE.RESULT; 
+
+        const trafficData = [];  //A variable created to store the final relavant traffic information in array form. 
+
+        //for each element in results, we iterate through every Situation. 
+        results.forEach(element => { 
+            
+            const situations = element.Situation; //Situation in results is also an array of objects, hence naming/storing it as situations.  
+            
+            situations.forEach(element => {  //with each element in situations, we read through Deviation. 
+                const deviations = element.Deviation;  //Deviation is also an array of objects, hence naming/storing it as deviations. 
+            
+                deviations.forEach(element => { //with each element of deviations, we collect each deviation into trafficData. 
+                    console.log(element);
+                    trafficData.push(element);
+                })
+
+            })
+         })
+          
+         res.json(trafficData); // sending the trafficdata/deviations in response to this .get request. 
     })
 
     .catch(error => {
