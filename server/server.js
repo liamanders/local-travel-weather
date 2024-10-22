@@ -16,7 +16,7 @@ require("dotenv").config();
 
 app.use(express.json(), cors(corsOptions));
 
-app.get('/geocode', async (req, res) => {
+app.post('/geocode', async (req, res) => {
   try {
     const address = req.body.address;
     const coordinates = await geoCode(address);

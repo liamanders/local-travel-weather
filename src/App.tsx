@@ -1,17 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css'
 
 function App() {
 
-  const [address, setAddress] = useState('');
+  const [address, setAddress] = useState('Sundsgårdens Folkhögskola');
   const [coordinates, setCoordinates] = useState(null);
 
   
+  useEffect(() => {
+  
+
+
     const handleGeocode  = async () => {
       try {
         console.log("Start");
         const response = await fetch('http://localhost:8080/geocode', {
-          method: 'GET',
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -25,6 +29,12 @@ function App() {
         console.error('Error fetching coordinates:', error);
       }
     };
+  if (address) {
+    handleGeocode();
+  }
+  }, [address]);
+
+  
 
   return (
       <>
@@ -38,7 +48,7 @@ function App() {
           <div className='searchBar'>
             <form className="search-form">
               <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Enter Your Address" required/>
-              <button onClick={handleGeocode}>SEARCH &nbsp; <i className="fa fa-search"></i></button>
+              <button>SEARCH &nbsp; <i className="fa fa-search"></i></button>
               <h3>{coordinates && (
               <p>Latitude: {coordinates.latitude}, Longitude: {coordinates.longitude}</p>
                 )}</h3>
