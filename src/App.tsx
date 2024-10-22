@@ -1,12 +1,33 @@
+import { useState } from 'react';
 import './App.css'
-// import axios from "axios"; // Importing axios
 
 function App() {
 
+  const [address, setAddress] = useState('');
+  const [coordinates, setCoordinates] = useState(null);
+
+  
+    const handleGeocode  = async () => {
+      try {
+        console.log("Start");
+        const response = await fetch('http://localhost:8080/geocode', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ address })
+        });
+        console.log("Whatever I want", response);
+
+        const data = await response.json();
+        setCoordinates(data);
+      } catch (error) {
+        console.error('Error fetching coordinates:', error);
+      }
+    };
 
   return (
-    <>
-      <body>
+      <>
         <header>
           <div className='logo'>
 
@@ -16,8 +37,11 @@ function App() {
           </div>
           <div className='searchBar'>
             <form className="search-form">
-              <input type="search" placeholder="Enter Your Address" required/>
-              <button type="submit">SEARCH &nbsp; <i className="fa fa-search"></i></button>
+              <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Enter Your Address" required/>
+              <button onClick={handleGeocode}>SEARCH &nbsp; <i className="fa fa-search"></i></button>
+              <h3>{coordinates && (
+              <p>Latitude: {coordinates.latitude}, Longitude: {coordinates.longitude}</p>
+                )}</h3>
             </form>
           </div>
         </header>
@@ -35,8 +59,7 @@ function App() {
             </div>
           </div>
         </main>
-      </body>
-    </>
+      </>
   )
 }
 
