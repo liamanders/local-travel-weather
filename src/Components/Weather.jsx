@@ -34,7 +34,7 @@ const Weather = () => {
   }
 
   useEffect(() => {
-    search("London");
+    search("Linköping");
   }, []);
 
 
