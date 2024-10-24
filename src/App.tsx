@@ -1,5 +1,7 @@
 import './App.css'
 import {Traffic} from "./traffic";
+import GoogleMap from "./GoogleMap";
+
 function App() 
   {
     
@@ -31,7 +33,8 @@ function App()
             </div>
             <div className='trafficCont'>
               <Traffic/>
-            </div>
+              <GoogleMap lat={53.42} lng={10} />   {/* Hardcoding some valyes*/}
+                       </div>
           </div>
         </main>
       </body>

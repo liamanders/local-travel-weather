@@ -1,0 +1,34 @@
+.traffic-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .traffic-table th, .traffic-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .traffic-table th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .traffic-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .traffic-table tr:hover {
+    background-color: #ddd;
+  }
+  
+  .traffic-table td {
+    font-size: 16px;
+  }
+  
+  h2 {
+    color: #ece6e6;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
