@@ -38,6 +38,33 @@ export const Departures = () => {
     return <div>No departures available.</div>;
   }
 
+  const transportTypes: { [key: string]: string } = {
+    BLT: "Local bus",
+    BRE: "Regional bus",
+    BXB: "Express bus",
+    BAX: "Airport Express bus",
+    BBL: "Bus",
+    BRB: "Replacement bus",
+    FLT: "Lokal ferry",
+    JAX: "Airport Express Train",
+    JLT: "Local train",
+    JRE: "Regional train",
+    JIC: "InterCity train",
+    JST: "High speed train",
+    JEX: "Express train",
+    JBL: "Train",
+    JEN: "EuroNight train",
+    JNT: "Night train",
+    SLT: "Tram",
+    TLT: "Taxi",
+    ULT: "Metro",
+  };
+
+  function transportationType(type: string) {
+    console.log(type);
+    return transportTypes[type] || "Unknown";
+  }
+
   return (
     <div className="departures">
       <h2>TRANSPORT DEPARTURES</h2>
@@ -58,7 +85,7 @@ export const Departures = () => {
               <td>{departure.direction}</td>
               <td>{departure.directionFlag}</td>
               <td>{departure.time}</td>
-              <td>{departure.name}</td>
+              <td>{transportationType(departure.Product[0].catIn)}</td>
             </tr>
           ))}
         </tbody>
