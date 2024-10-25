@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import "./Departures.css";
 
 export const Departures = () => {
   const [departures, setDepartures] = useState([]);
@@ -65,6 +66,10 @@ export const Departures = () => {
     return transportTypes[type] || "Unknown";
   }
 
+  function formatTime(time) {
+    return time.slice(0, 5);
+  }
+
   return (
     <div className="departures">
       <h2>TRANSPORT DEPARTURES</h2>
@@ -84,7 +89,7 @@ export const Departures = () => {
               <td>{departure.stop}</td>
               <td>{departure.direction}</td>
               <td>{departure.directionFlag}</td>
-              <td>{departure.time}</td>
+              <td>{formatTime(departure.time)}</td>
               <td>{transportationType(departure.Product[0].catIn)}</td>
             </tr>
           ))}
