@@ -7,13 +7,12 @@ function App() {
   const [coordinates, setCoordinates] = useState(null);
 
   
-  useEffect(() => {
   
 
 
-    const handleGeocode  = async () => {
+    const handleGeocode  = async (e: React.FormEvent) => {
+      e.preventDefault();
       try {
-        console.log("Start");
         const response = await fetch('http://localhost:8080/geocode', {
           method: 'POST',
           headers: {
@@ -21,7 +20,6 @@ function App() {
           },
           body: JSON.stringify({ address })
         });
-        console.log("Whatever I want", response);
 
         const data = await response.json();
         setCoordinates(data);
@@ -29,10 +27,6 @@ function App() {
         console.error('Error fetching coordinates:', error);
       }
     };
-  if (address) {
-    handleGeocode();
-  }
-  }, [address]);
 
   
 
@@ -46,9 +40,9 @@ function App() {
             <h1>Local, Travel and Weather</h1>
           </div>
           <div className='searchBar'>
-            <form className="search-form">
+            <form className="search-form" onSubmit={handleGeocode}>
               <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Enter Your Address" required/>
-              <button>SEARCH &nbsp; <i className="fa fa-search"></i></button>
+              <button type='submit'>SEARCH &nbsp; <i className="fa fa-search"></i></button>
               <h3>{coordinates && (
               <p>Latitude: {coordinates.latitude}, Longitude: {coordinates.longitude}</p>
                 )}</h3>
