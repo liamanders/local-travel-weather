@@ -1,6 +1,8 @@
-import './App.css'
+import './App.css';
+import './GoogleMap.css';
 import {Traffic} from "./traffic";
 import GoogleMap from "./GoogleMap";
+
 
 function App() 
   {
@@ -31,10 +33,14 @@ function App()
             <div className='localCont'>
               <h2>LOCAL WEATHER</h2>
             </div>
-            <div className='trafficCont'>
-              <Traffic/>
-              <GoogleMap lat={53.42} lng={10} />   {/* Hardcoding some valyes*/}
-                       </div>
+            <div className='traffic-map-container'>
+              <div className='traffic'>
+                <Traffic />
+              </div>
+              <div className='google-map'>
+                <GoogleMap lat={53.42} lng={10} />
+              </div>
+            </div>
           </div>
         </main>
       </body>
