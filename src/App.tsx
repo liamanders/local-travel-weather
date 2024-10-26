@@ -37,6 +37,12 @@ function App() {
 
   return (
       <>
+      {loading && (
+          <div className="loading-overlay">
+            <img src={logo} className='loadingLogo' alt="Loading Logo" />
+            <h2>Loading...</h2>
+          </div>
+        )}
         <header>
           <div className='logo'>
             <img className= 'logoImg' src= {logo} alt="Logo" />
@@ -49,7 +55,8 @@ function App() {
               <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Enter Your Address" required/>
               <button type='submit'
               disabled={loading}>{loading ? 'Loading ...' : 'SEARCH'} <i className="fa fa-search"></i></button>
-              <h3>{coordinates && (
+              <h3>{coordinates &&
+              (
               <p>Latitude: {coordinates.latitude}, Longitude: {coordinates.longitude}</p>
                 )}</h3>
             </form>
