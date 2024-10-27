@@ -35,9 +35,19 @@
   }
 }
 
+.header {
+  display: flex;
+}
+
+.title {
+  margin-left: 8rem;
+  margin-right: 10rem;
+}
+
 .logo {
-  float: left;
-  max-width: 1px;
+  /* float: left; */
+  display: flex;
+  justify-self: baseline;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
@@ -55,8 +65,10 @@
 }
 
 .title {
+  display: flex;
   text-shadow: 0 0 4px #fff8f8;
 }
+
 .local {
   color: rgb(126, 225, 255);
 }
