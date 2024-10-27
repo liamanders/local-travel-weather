@@ -82,7 +82,9 @@ main {
 
 .transportCont {
   grid-area: 1 / 1 / 2 / 2;
-  background-color: black;
+  background-color: white;
+  border: 1px solid #b1b1b1;
+  border-radius: 5px;
 }
 
 .localCont {
