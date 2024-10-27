@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Departures } from "./Departures";
 import './App.css'
 import logo from './assets/logo.png'
 
@@ -56,7 +57,7 @@ function App() {
             <div className='title'>
               <h1><span className='local'>Local, </span><span className='travel'>Travel and Weather</span></h1>
             </div>
-            </div>
+          </div>
           <div className='searchBar'>
             <form className="search-form" onSubmit={handleGeocode}>
               <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Enter Your Address" required/>
@@ -69,23 +70,23 @@ function App() {
                 )}</h3>
             </form>
           </div>
-        </header>
-        <main>
-          <div className='divider'></div>
-          <div className='genContainer'>
-            <div className='transportCont'>
-              <h2>TRANSPORT DEPARTURES</h2>
+      </header>
+      <main>
+        <div className="divider"></div>
+        <div className="genContainer">
+            <div className="transportCont">
+              <Departures />
             </div>
-            <div className='localCont'>
+            <div className="localCont">
               <h2>LOCAL WEATHER</h2>
             </div>
-            <div className='trafficCont'>
+            <div className="trafficCont">
               <h2>TRAFFIC UPDATES</h2>
             </div>
           </div>
-        </main>
+      </main>
       </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
