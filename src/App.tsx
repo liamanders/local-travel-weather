@@ -44,7 +44,7 @@ function App() {
             <h2>Loading...</h2>
           </div>
         )}
-        <header>
+      <header>
           <div className='logo'>
             <img className= 'logoImg' src= {logo} alt="Logo" />
           </div>
@@ -61,20 +61,22 @@ function App() {
               <p>Latitude: {coordinates.latitude}, Longitude: {coordinates.longitude}</p>
                 )}</h3>
             </form>
+          </div>
       </header>
       <main>
         <div className="divider"></div>
         <div className="genContainer">
-          <div className="transportCont">
-            <Departures />
+            <div className="transportCont">
+              <Departures />
+            </div>
+            <div className="localCont">
+              <h2>LOCAL WEATHER</h2>
+            </div>
+            <div className="trafficCont">
+              <h2>TRAFFIC UPDATES</h2>
+            </div>
           </div>
-          <div className="localCont">
-            <h2>LOCAL WEATHER</h2>
-          </div>
-          <div className="trafficCont">
-            <h2>TRAFFIC UPDATES</h2>
-          </div>
-        </main>
+      </main>
       </>
   );
 };
