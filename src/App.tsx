@@ -7,6 +7,7 @@ function App() {
   const [address, setAddress] = useState('');
   const [coordinates, setCoordinates] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [invalidErr, setInvalidErr] = useState('');
 
   
   
@@ -22,11 +23,15 @@ function App() {
           },
           body: JSON.stringify({ address })
         });
-
+        if (!response.ok) {
+          throw new Error('Invalid address');
+        } 
         const data = await response.json();
         setCoordinates(data);
+        setInvalidErr('');
       } catch (error) {
         console.error('Error fetching coordinates:', error);
+        if (error) setInvalidErr('Invalid Address! Please enter a valid address.');
       } finally {
         setLoading(false);
       }
@@ -45,7 +50,7 @@ function App() {
         )}
         <header>
           <div className='logo'>
-            <img className= 'logoImg' src= {logo} alt="Logo" />
+            <a href="/"><img className= 'logoImg' src= {logo} alt="Logo" /></a>
           </div>
           <div className='title'>
             <h1><span className='local'>Local, </span><span className='travel'>Travel and Weather</span></h1>
@@ -55,6 +60,7 @@ function App() {
               <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Enter Your Address" required/>
               <button type='submit'
               disabled={loading}>{loading ? 'Loading ...' : 'SEARCH'} <i className="fa fa-search"></i></button>
+              <h3>{invalidErr}</h3>
               <h3>{coordinates &&
               (
               <p>Latitude: {coordinates.latitude}, Longitude: {coordinates.longitude}</p>
