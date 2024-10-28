@@ -1,7 +1,10 @@
+
 import { useState } from 'react';
 import { Departures } from "./Departures";
 import './App.css'
 import logo from './assets/logo.png'
+ import React from 'react';
+import Weather from './Components/Weather';
 
 function App() {
 
@@ -77,8 +80,8 @@ function App() {
             <div className="transportCont">
               <Departures />
             </div>
-            <div className="localCont">
-              <h2>LOCAL WEATHER</h2>
+            <div className="app">
+              <h2>Weather</h2>
             </div>
             <div className="trafficCont">
               <h2>TRAFFIC UPDATES</h2>
