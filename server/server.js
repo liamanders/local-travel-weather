@@ -1,11 +1,10 @@
 const express = require("express");
 const cors = require("cors");
+const departures = require("./departures");
 
 require("dotenv").config();
 
 const app = express();
-
-const departures = require("./departures");
 
 const corsOptions = {
   origin: ["http://localhost:5173"], //where the app is running
