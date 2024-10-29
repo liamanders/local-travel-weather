@@ -4,7 +4,7 @@ import { Departures } from "./Departures";
 import './App.css'
 import logo from './assets/logo.png'
  import React from 'react';
-import Weather from './Components/Weather';
+import {Weather} from './Components/Weather';
 
 function App() {
 
@@ -81,7 +81,7 @@ function App() {
               <Departures />
             </div>
             <div className="app">
-              <h2>Weather</h2>
+            <Weather />
             </div>
             <div className="trafficCont">
               <h2>TRAFFIC UPDATES</h2>

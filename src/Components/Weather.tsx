@@ -10,7 +10,7 @@ import snow_icon from '../assets/snow.png'
 import wind_icon from '../assets/wind.png'
 import humidity_icon from '../assets/humidity.png'
 
-const Weather = () => {
+export const Weather = () => {
 
   const [weatherData, setWeatherData] = useState(null);
   const inputRef = useRef();
@@ -33,9 +33,7 @@ const Weather = () => {
     "13n": snow_icon,
   }
 
-  useEffect(() => {
-    search("Linköping");
-  }, []);
+  
 
 
 
@@ -71,6 +69,9 @@ const Weather = () => {
     }
   }
 
+  useEffect(() => {
+    search("Linköping");
+  }, []);
 
   return (
     <div className="Weather">
@@ -116,4 +117,4 @@ const Weather = () => {
   )
 };
 
-export default Weather
+//module.exports Weather;
