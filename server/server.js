@@ -1,14 +1,20 @@
 const express = require("express");
-const cors = require("cors");
-const departures = require("./departures");
 
-require("dotenv").config();
+
+const geoCode = require('./geoLocationApi');
+const departures = require("./departures");
 
 const app = express();
 
-const geoCode = require('./geoLocationApi');
+const cors = require("cors");
+
+require("dotenv").config();
+
+
 
 const port = 8080;
+
+
 
 
 const corsOptions = {
@@ -30,7 +36,8 @@ app.post('/geocode', async (req, res) => {
 
 app.use("/api/departures", departures);
 
-
+// When someone visits URL: http://localhost:8080/api/departures, the server will respond
+// run server: npm run server
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
