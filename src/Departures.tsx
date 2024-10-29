@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+
+
 import "./Departures.css";
 
 export const Departures = () => {
@@ -24,6 +26,7 @@ export const Departures = () => {
     } finally {
       setLoading(false); // Step 3: Set loading to false after data is fetched
     }
+
   };
 
   useEffect(() => {
