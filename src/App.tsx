@@ -14,13 +14,13 @@ function App() {
       <>
         <header>
           <div className='header'>
-        <div className="logo">
-        <a href="/"><img className= 'logoImg' src= {logo} alt="Logo" /></a>
-        </div>
-        <div className="title">
-        <h1><span className='local'>Local, </span><span className='travel'>Travel and Weather</span></h1>
-        </div>
-        </div>
+            <div className="logo">
+              <a href="/"><img className= 'logoImg' src= {logo} alt="Logo" /></a>
+            </div>
+            <div className="title">
+              <h1><span className='local'>Local, </span><span className='travel'>Travel and Weather</span></h1>
+            </div>
+          </div>
           <GeoCoding />
         </header>
         <main>
