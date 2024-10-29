@@ -9,8 +9,8 @@ const router = express.Router();
 //When someone visits URL: /api/traffic, the server will respond with the Traffic updates 
 router.get("/", (req, res) => {
     const API_URL = 'https://api.trafikinfo.trafikverket.se/v2/data.json';
-    const long = "592554"; //Will be changed later on, hardcoding some values now.
-    const lat = "6500334";  //Will be changed later on, hardcoding some values now.
+    const long = "16.5941715"; //Will be changed later on, hardcoding some values now.
+    const lat = "58.6334229";  //Will be changed later on, hardcoding some values now.
     const authenticationKey = process.env.AUTH_KEY;
    
     if (!authenticationKey) {
@@ -26,8 +26,8 @@ router.get("/", (req, res) => {
              <LOGIN authenticationkey="${authenticationKey}" />
              <QUERY objecttype="Situation" schemaversion="1.5" >
             <FILTER>
-            <WITHIN name="Deviation.Geometry.Point.SWEREF99TM" shape="center"
-                        value="${long} ${lat}" radius="10000" />
+            <WITHIN name="Deviation.Geometry.Point.WGS84" shape="center"
+                        value="${long} ${lat}" radius="10000m" />
             </FILTER>
         </QUERY>
                    </REQUEST>`
