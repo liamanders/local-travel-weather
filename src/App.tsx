@@ -1,6 +1,7 @@
 import "./App.css";
 import { Departures } from "./Departures";
 
+import GeoCoding from "./GeoCoding";
 function App() {
   return (
     <>
