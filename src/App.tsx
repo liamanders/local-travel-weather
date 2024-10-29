@@ -1,6 +1,10 @@
+
 import { useState } from 'react';
+import { Departures } from "./Departures";
 import './App.css'
 import logo from './assets/logo.png'
+ import React from 'react';
+import Weather from './Components/Weather';
 
 import GeoCoding from './GeoCoding'
 import { Departures } from './Departures';
@@ -23,22 +27,22 @@ function App() {
           </div>
           <GeoCoding />
         </header>
-        <main>
-          <div className='divider'></div>
-          <div className='genContainer'>
-            <div className='transportCont'>
+      <main>
+        <div className="divider"></div>
+        <div className="genContainer">
+            <div className="transportCont">
               <Departures />
             </div>
-            <div className='localCont'>
-              <h2>LOCAL WEATHER</h2>
+            <div className="app">
+              <Weather />
             </div>
-            <div className='trafficCont'>
+            <div className="trafficCont">
               <h2>TRAFFIC UPDATES</h2>
             </div>
           </div>
-        </main>
+      </main>
       </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

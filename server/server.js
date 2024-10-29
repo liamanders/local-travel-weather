@@ -1,5 +1,6 @@
 const express = require("express");
 
+
 const geoCode = require('./geoLocationApi');
 const departures = require("./departures");
 
@@ -12,6 +13,7 @@ require("dotenv").config();
 
 
 const port = 8080;
+
 
 
 
@@ -39,3 +41,8 @@ app.use("/api/departures", departures);
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
+
+// When someone visits URL: http://localhost:8080/api/departures, the server will respond
+// run server: npm run server
+
+
