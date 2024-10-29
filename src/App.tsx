@@ -3,8 +3,11 @@ import logo from "./assets/logo.png";
 import { Weather } from "./Components/Weather";
 import GeoCoding from "./GeoCoding";
 import { Departures } from "./Departures";
+import {Traffic} from "./traffic";
+import GoogleMap from "./GoogleMap";
 
 function App() {
+
   return (
     <>
       <header>
@@ -31,12 +34,19 @@ function App() {
           </div>
           <div className="app">
             <Weather />
+            </div>
+          
+            <div className='traffic-map-container'>
+              <div className='traffic'>
+                <Traffic />
+              </div>
+              <div className='google-map'>
+                <GoogleMap lat={53.42} lng={10} />
+              </div>
+            </div>
           </div>
-          <div className="trafficCont">
-            <h2>TRAFFIC UPDATES</h2>
-          </div>
-        </div>
-      </main>
+         
+       </main>
     </>
   );
 }

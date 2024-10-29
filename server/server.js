@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import geoCode from "./geoLocationApi.js";
 import departures from "./departures.js";
+import traffic from "./traffic.js";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -26,10 +27,15 @@ app.post("/geocode", async (req, res) => {
 });
 
 app.use("/api/departures", departures);
-
+app.use("/api/traffic", traffic); 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
 
-// When someone visits URL: http://localhost:8080/api/departures, the server will respond
-// run server: npm run server
+  
+dotenv.config();  //Load environment variables.
+
+
+// //Middleware
+app.use(cors(corsOptions)); //enables CORS
+app.use(express.json()); //Allows the server to handle JSON request bodies.
