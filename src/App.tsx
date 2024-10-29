@@ -1,7 +1,18 @@
+
+import { useState } from 'react';
+
 import "./App.css";
 import { Departures } from "./Departures";
+import GeoCoding from './GeoCoding'
+
 
 function App() {
+
+
+
+  
+
+
   return (
     <>
       <header>
@@ -9,14 +20,7 @@ function App() {
         <div className="title">
           <h1>Local, Travel and Weather</h1>
         </div>
-        <div className="searchBar">
-          <form className="search-form">
-            <input type="search" placeholder="Enter Your Address" required />
-            <button type="submit">
-              SEARCH &nbsp; <i className="fa fa-search"></i>
-            </button>
-          </form>
-        </div>
+        <GeoCoding />
       </header>
       <main>
         <div className="divider"></div>
@@ -34,6 +38,7 @@ function App() {
       </main>
     </>
   );
+
 }
 
 export default App;
