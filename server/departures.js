@@ -1,7 +1,6 @@
-const express = require("express");
-const axios = require("axios");
+import express from "express";
+import axios from "axios";
 
-require("dotenv").config();
 const router = express.Router();
 
 // Trafiklab API details
@@ -77,4 +76,4 @@ router.get("/", async (req, res) => {
 });
 
 // Export the router
-module.exports = router;
+export default router;
