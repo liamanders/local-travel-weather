@@ -1,10 +1,11 @@
 import "./App.css";
 import { Departures } from "./Departures";
-
 import GeoCoding from "./GeoCoding";
+import { LocationProvider } from "./LocationContext";
+
 function App() {
   return (
-    <>
+    <LocationProvider>
       <header>
         <div className="logo"></div>
         <div className="title">
@@ -33,7 +34,7 @@ function App() {
           </div>
         </div>
       </main>
-    </>
+    </LocationProvider>
   );
 }
 

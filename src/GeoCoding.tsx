@@ -1,77 +1,98 @@
-import { useState } from 'react';
-import './App.css'
-import logo from './assets/logo.png'
+import { useContext, useState } from "react";
+import "./App.css";
+import logo from "./assets/logo.png";
+import { LocationContext } from "./LocationContext";
 
-function geoCoding() {
+function GeoCoding() {
+  const { setLocation } = useContext(LocationContext);
 
-  const [address, setAddress] = useState('');
+  const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [invalidErr, setInvalidErr] = useState('');
+  const [invalidErr, setInvalidErr] = useState("");
 
-  
-  
-    const handleGeocode  = async (e: React.FormEvent) => {
-      e.preventDefault();
-      setLoading(true);
-      setTimeout(async () => {
+  const handleGeocode = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setTimeout(async () => {
       try {
-        const response = await fetch('http://localhost:8080/geocode', {
-          method: 'POST',
+        const response = await fetch("http://localhost:8080/geocode", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify({ address })
+          body: JSON.stringify({ address }),
         });
         if (!response.ok) {
-          throw new Error('Invalid address');
-        } 
+          throw new Error("Invalid address");
+        }
         const data = await response.json();
         setCoordinates(data);
-        setInvalidErr('');
+        setInvalidErr("");
+
+        setLocation({
+          latitude: data.latitude,
+          longitude: data.longitude,
+        });
       } catch (error) {
-        console.error('Error fetching coordinates:', error);
-        if (error) setInvalidErr('Invalid Address! Please enter a valid address.');
+        console.error("Error fetching coordinates:", error);
+        if (error)
+          setInvalidErr("Invalid Address! Please enter a valid address.");
       } finally {
         setLoading(false);
       }
     }, 1000);
-    }; 
-
-  
+  };
 
   return (
-      <>
+    <>
       {loading && (
-          <div className="loading-overlay">
-            <img src={logo} className='loadingLogo' alt="Loading Logo" />
-            <h2>Loading...</h2>
+        <div className="loading-overlay">
+          <img src={logo} className="loadingLogo" alt="Loading Logo" />
+          <h2>Loading...</h2>
+        </div>
+      )}
+      <header>
+        <div className="header">
+          <div className="logo">
+            <a href="/">
+              <img className="logoImg" src={logo} alt="Logo" />
+            </a>
           </div>
-        )}
-        <header>
-          <div className='header'>
-            <div className='logo'>
-              <a href="/"><img className= 'logoImg' src= {logo} alt="Logo" /></a>
-            </div>
-            <div className='title'>
-              <h1><span className='local'>Local, </span><span className='travel'>Travel and Weather</span></h1>
-            </div>
-            </div>
-          <div className='searchBar'>
-            <form className="search-form" onSubmit={handleGeocode}>
-              <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Enter Your Address" required/>
-              <button type='submit'
-              disabled={loading}>{loading ? 'Loading ...' : 'SEARCH'} <i className="fa fa-search"></i></button>
-              <h3>{invalidErr}</h3>
-              <h3>{coordinates &&
-              (
-              <p>Latitude: {coordinates.latitude}, Longitude: {coordinates.longitude}</p>
-                )}</h3>
-            </form>
+          <div className="title">
+            <h1>
+              <span className="local">Local, </span>
+              <span className="travel">Travel and Weather</span>
+            </h1>
           </div>
-        </header>
-      </>
-  )
+        </div>
+        <div className="searchBar">
+          <form className="search-form" onSubmit={handleGeocode}>
+            <input
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="Enter Your Address"
+              required
+            />
+            <button type="submit" disabled={loading}>
+              {loading ? "Loading ..." : "SEARCH"}{" "}
+              <i className="fa fa-search"></i>
+            </button>
+            <h3>{invalidErr}</h3>
+            <h3>
+              {coordinates && (
+                <p>
+                  Latitude: {coordinates.latitude}, Longitude:{" "}
+                  {coordinates.longitude}
+                </p>
+              )}
+            </h3>
+          </form>
+        </div>
+      </header>
+    </>
+  );
 }
 
-export default geoCoding
+export default GeoCoding;

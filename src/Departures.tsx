@@ -1,36 +1,65 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./Departures.css";
+import { LocationContext } from "./LocationContext";
+
+type Departure = {
+  stop: string;
+  direction: string;
+  directionFlag: string;
+  time: string;
+  stopExtId: string;
+  Product: {
+    catIn: string;
+  }[];
+};
 
 export const Departures = () => {
-  const [departures, setDepartures] = useState([]);
+  const { location } = useContext(LocationContext);
+  const [departures, setDepartures] = useState<Departure[]>([]);
   const [loading, setLoading] = useState(true); // Step 1: Add loading state
 
-  const fetchApi = async () => {
-    setLoading(true); // Step 2: Set loading to true before fetching data
-    try {
-      const response = await axios.get("http://localhost:8080/api/departures");
-      // Ensure the response data is an array
-      if (response.data && Array.isArray(response.data.departures)) {
-        setDepartures(response.data.departures);
-      } else {
-        setDepartures([]);
-        console.error("Response data is not an array:", response.data);
-      }
-    } catch (error) {
-      console.error("Error fetching departures:", error);
-      setDepartures([]);
-    } finally {
-      setLoading(false); // Step 3: Set loading to false after data is fetched
-    }
-  };
-
   useEffect(() => {
+    const fetchApi = async () => {
+      setLoading(true); // Step 2: Set loading to true before fetching data
+
+      // Check if location has latitude and longitude
+      if (!location || !location.latitude || !location.longitude) {
+        console.error("Latitude and longitude are required");
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/api/departures`,
+          {
+            params: {
+              latitude: location.latitude,
+              longitude: location.longitude,
+            },
+          }
+        );
+
+        // Ensure the response data is an array
+        if (response.data && Array.isArray(response.data.departures)) {
+          setDepartures(response.data.departures);
+        } else {
+          setDepartures([]);
+          console.error("Response data is not an array:", response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching departures:", error);
+        setDepartures([]);
+      } finally {
+        setLoading(false); // Step 3: Set loading to false after data is fetched
+      }
+    };
+
     fetchApi();
-  }, []);
+  }, [location]); // Refetch data if location changes
 
   if (loading) {
-    // Step 4: Render loading status
     return <div>Loading...</div>;
   }
 
@@ -85,7 +114,7 @@ export const Departures = () => {
           </tr>
         </thead>
         <tbody>
-          {departures.map((departure: any) => (
+          {departures.map((departure) => (
             <tr key={departure.stopExtId}>
               <td>{departure.stop}</td>
               <td>{departure.direction}</td>
