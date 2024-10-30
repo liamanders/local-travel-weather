@@ -166,7 +166,6 @@ main {
 
 .localCont {
   grid-area: 1 / 2 / 2 / 3;
-  background-color: black;
 }
 
 .trafficCont {

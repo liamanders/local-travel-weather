@@ -52,7 +52,7 @@ function GeoCoding() {
           <h2>Loading...</h2>
         </div>
       )}
-      <header>
+      <div>
         <div className="header">
           <div className="logo">
             <a href="/">
@@ -90,7 +90,7 @@ function GeoCoding() {
             </h3>
           </form>
         </div>
-      </header>
+      </div>
     </>
   );
 }

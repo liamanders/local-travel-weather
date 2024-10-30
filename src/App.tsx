@@ -1,4 +1,5 @@
 import "./App.css";
+import { Weather } from "./Components/Weather";
 import { Departures } from "./Departures";
 import GeoCoding from "./GeoCoding";
 import { LocationProvider } from "./LocationContext";
@@ -7,18 +8,7 @@ function App() {
   return (
     <LocationProvider>
       <header>
-        <div className="logo"></div>
-        <div className="title">
-          <h1>Local, Travel and Weather</h1>
-        </div>
-        <div className="searchBar">
-          <form className="search-form">
-            <input type="search" placeholder="Enter Your Address" required />
-            <button type="submit">
-              SEARCH &nbsp; <i className="fa fa-search"></i>
-            </button>
-          </form>
-        </div>
+        <GeoCoding />
       </header>
       <main>
         <div className="divider"></div>
@@ -27,7 +17,7 @@ function App() {
             <Departures />
           </div>
           <div className="localCont">
-            <h2>LOCAL WEATHER</h2>
+            <Weather />
           </div>
           <div className="trafficCont">
             <h2>TRAFFIC UPDATES</h2>
