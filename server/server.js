@@ -1,11 +1,16 @@
 const express = require("express");
+
+const geoCode = require("./geoLocationApi");
+const departures = require("./departures");
+const traffic = require("./traffic.js");
+
+const app = express();
+
 const cors = require("cors");
 const departures = require("./departures");
 const geoCode = require("./geoLocationApi");
 
 require("dotenv").config();
-
-const app = express();
 
 const port = 8080;
 
@@ -15,7 +20,7 @@ const corsOptions = {
 
 app.use(express.json(), cors(corsOptions));
 
-app.get("/geocode", async (req, res) => {
+app.post("/geocode", async (req, res) => {
   try {
     const address = req.body.address;
     const coordinates = await geoCode(address);
@@ -27,6 +32,11 @@ app.get("/geocode", async (req, res) => {
 
 app.use("/api/departures", departures);
 
+// Use the traffic routes
+app.use("/api/traffic", traffic); //setting up a base route first
+
+// When someone visits URL: http://localhost:8080/api/departures, the server will respond
+// run server: npm run server
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });

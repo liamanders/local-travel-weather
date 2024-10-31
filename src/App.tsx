@@ -2,7 +2,9 @@ import "./App.css";
 import { Weather } from "./Components/Weather";
 import { Departures } from "./Departures";
 import GeoCoding from "./GeoCoding";
+import GoogleMap from "./GoogleMap";
 import { LocationProvider } from "./LocationContext";
+import { Traffic } from "./Traffic";
 
 function App() {
   return (
@@ -20,7 +22,12 @@ function App() {
             <Weather />
           </div>
           <div className="trafficCont">
-            <h2>TRAFFIC UPDATES</h2>
+            <div className="traffic">
+              <Traffic />
+            </div>
+            <div className="google-map">
+              <GoogleMap />
+            </div>
           </div>
         </div>
       </main>
