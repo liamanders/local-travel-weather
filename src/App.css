@@ -12,8 +12,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); 
-  display: flexbox; 
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flexbox;
   justify-content: center;
   align-content: center;
   z-index: 999;
@@ -24,10 +24,9 @@
   animation: loadingLogoGlow 600ms infinite;
 }
 
-
-
 @keyframes loadingLogoGlow {
-  0%, 100% {
+  0%,
+  100% {
     filter: drop-shadow(0 0 10px rgb(126, 225, 255));
   }
   50% {
@@ -101,9 +100,7 @@
   box-shadow: 0 0 15px hsla(0, 0%, 100%, 0.725);
 }
 .search-form:hover input {
-  width: 30rem;
-
- 
+  width: 20rem;
 }
 input {
   border: none;
@@ -112,36 +109,39 @@ input {
   font-weight: 600;
   outline: none;
   width: 0rem;
-  height: 2rem;
   color: black;
-  transition: 0.8s;
-  
+  border-radius: 2rem;
+  padding: 10px 20px;
+
   &::placeholder {
-      text-align: center;
-      letter-spacing: 2px;
+    text-align: center;
+    letter-spacing: 2px;
   }
 
   &:focus {
-    width: 30rem;
+    width: 20rem;
   }
 
+  &:hover {
+    border: 1px solid black;
+    border-color: rgb(126, 225, 255);
+  }
 }
 
 .search-form button {
   border-color: transparent;
   border-radius: 2rem;
-  height: 2rem;
   font-weight: 600;
   background-color: transparent;
   color: rgb(218, 178, 49);
   cursor: pointer;
   transition: border-color 0.25s;
+  padding: 10px 20px;
 
   &:hover {
-    border-color:rgb(126, 225, 255);
+    border-color: rgb(126, 225, 255);
   }
 }
-
 
 main {
   margin-top: 2rem;
@@ -155,7 +155,6 @@ main {
   gap: 7px;
   background-color: white;
 }
-
 
 .transportCont {
   grid-area: 1 / 1 / 2 / 2;

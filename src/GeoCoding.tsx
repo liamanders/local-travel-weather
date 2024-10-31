@@ -34,6 +34,8 @@ function GeoCoding() {
           latitude: data.latitude,
           longitude: data.longitude,
         });
+
+        setAddress("");
       } catch (error) {
         console.error("Error fetching coordinates:", error);
         if (error)
