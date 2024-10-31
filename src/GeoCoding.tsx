@@ -80,14 +80,6 @@ function GeoCoding() {
               <i className="fa fa-search"></i>
             </button>
             <h3>{invalidErr}</h3>
-            <h3>
-              {coordinates && (
-                <p>
-                  Latitude: {coordinates.latitude}, Longitude:{" "}
-                  {coordinates.longitude}
-                </p>
-              )}
-            </h3>
           </form>
         </div>
       </div>
