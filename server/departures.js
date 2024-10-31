@@ -9,10 +9,7 @@ const apiKey = process.env.TRAFIKLAB_API_KEY;
 const stationsProximityApiUrl = `https://api.resrobot.se/v2.1/location.nearbystops`;
 const departureBoardApiUrl = `https://api.resrobot.se/v2.1/departureBoard`;
 
-const lat = "59.3835595"; // TODO: Will be changed later on
-const long = "17.9428042"; // TODO: Will be changed later on
-
-// Get nearby stations
+// Get nearby station ID
 const getNearbyStationId = async (lat, long) => {
   try {
     const response = await axios.get(stationsProximityApiUrl, {
@@ -25,7 +22,6 @@ const getNearbyStationId = async (lat, long) => {
     });
     const nearbyStations = await response.data;
     if (nearbyStations) {
-      // return the first item in the array
       const nearestStation =
         nearbyStations.stopLocationOrCoordLocation[0].StopLocation;
       return nearestStation.id;
@@ -37,7 +33,7 @@ const getNearbyStationId = async (lat, long) => {
   }
 };
 
-// Get departures on nearby station
+// Get departures for a station
 const getDepartures = async (stationId) => {
   try {
     const response = await axios.get(departureBoardApiUrl, {
@@ -49,7 +45,6 @@ const getDepartures = async (stationId) => {
     });
     const departures = await response.data;
     if (departures) {
-      // return the first 5 departures
       const filteredDepartures = departures.Departure.slice(0, 5);
       return filteredDepartures;
     }
@@ -60,10 +55,19 @@ const getDepartures = async (stationId) => {
   }
 };
 
-// set up a route to get the departures
+// Route to get departures based on latitude and longitude from query parameters
 router.get("/", async (req, res) => {
+  const { latitude, longitude } = req.query;
+
+  // Validate that latitude and longitude are provided
+  if (!latitude || !longitude) {
+    return res
+      .status(400)
+      .json({ error: "Latitude and longitude are required" });
+  }
+
   try {
-    const nearbyStationId = await getNearbyStationId(lat, long);
+    const nearbyStationId = await getNearbyStationId(latitude, longitude);
     if (nearbyStationId) {
       const departures = await getDepartures(nearbyStationId);
       res.json({ departures });

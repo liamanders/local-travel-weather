@@ -1,36 +1,44 @@
+import { useContext, useEffect } from "react";
 import "./App.css";
+import { Weather } from "./Components/Weather";
 import { Departures } from "./Departures";
+import GeoCoding from "./GeoCoding";
+import GoogleMap from "./GoogleMap";
+import { LocationContext } from "./LocationContext";
+import { Traffic } from "./Traffic";
 
 function App() {
+  const { location } = useContext(LocationContext);
+
+  useEffect(() => {}, [location]);
+
   return (
     <>
       <header>
-        <div className="logo"></div>
-        <div className="title">
-          <h1>Local, Travel and Weather</h1>
-        </div>
-        <div className="searchBar">
-          <form className="search-form">
-            <input type="search" placeholder="Enter Your Address" required />
-            <button type="submit">
-              SEARCH &nbsp; <i className="fa fa-search"></i>
-            </button>
-          </form>
-        </div>
+        <GeoCoding />
       </header>
       <main>
         <div className="divider"></div>
-        <div className="genContainer">
-          <div className="transportCont">
-            <Departures />
+        {location.latitude && location.longitude ? (
+          <div className="genContainer">
+            <div className="transportCont">
+              <Departures />
+            </div>
+            <div className="localCont">
+              <Weather />
+            </div>
+            <div className="trafficCont">
+              <div className="traffic">
+                <Traffic />
+              </div>
+              <div className="google-map">
+                <GoogleMap />
+              </div>
+            </div>
           </div>
-          <div className="localCont">
-            <h2>LOCAL WEATHER</h2>
-          </div>
-          <div className="trafficCont">
-            <h2>TRAFFIC UPDATES</h2>
-          </div>
-        </div>
+        ) : (
+          <p>Please enter an address to see nearby information.</p>
+        )}
       </main>
     </>
   );
