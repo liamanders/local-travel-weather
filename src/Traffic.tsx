@@ -16,32 +16,41 @@ interface DisplayTrafficInfoProps {
 
 //Conditionally rendering traffic data in a table or showing a loading... message if data is unavailable.
 function DisplayTrafficInfo({ trafficData }: DisplayTrafficInfoProps) {
-  if (trafficData !== null) {
-    return (
-      <div>
-        <table className="traffic-table">
-          <thead>
-            <tr>
-              <th>Road Number</th>
-              <th>Address</th>
-              <th>Cause</th>
-            </tr>
-          </thead>
-          <tbody>
-            {trafficData.map((item, index) => (
-              <tr key={index}>
-                <td>{item.RoadNumber}</td>
-                <td>{item.LocationDescriptor}</td>
-                <td>{item.TrafficRestrictionType}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    );
-  } else {
+  if (trafficData === null) {
     return <h2>Loading...</h2>;
   }
+
+  if (trafficData.length === 0) {
+    return (
+      <h2>
+        No available traffic data at this location, please check other nearby
+        locations.
+      </h2>
+    );
+  }
+
+  return (
+    <div>
+      <table className="traffic-table">
+        <thead>
+          <tr>
+            <th>Road Number</th>
+            <th>Address</th>
+            <th>Cause</th>
+          </tr>
+        </thead>
+        <tbody>
+          {trafficData.map((item, index) => (
+            <tr key={index}>
+              <td>{item.RoadNumber}</td>
+              <td>{item.LocationDescriptor}</td>
+              <td>{item.TrafficRestrictionType}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 //Initialize state to store traffic data, initially set to null

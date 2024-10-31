@@ -64,7 +64,12 @@ export const Departures = () => {
   }
 
   if (!Array.isArray(departures) || departures.length === 0) {
-    return <div>No departures available.</div>;
+    return (
+      <div>
+        No available departures at this location, please check other nearby
+        locations.
+      </div>
+    );
   }
 
   const transportTypes: { [key: string]: string } = {
