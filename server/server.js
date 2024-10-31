@@ -7,8 +7,6 @@ const traffic = require("./traffic.js");
 const app = express();
 
 const cors = require("cors");
-const departures = require("./departures");
-const geoCode = require("./geoLocationApi");
 
 require("dotenv").config();
 
