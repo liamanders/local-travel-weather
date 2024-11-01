@@ -107,7 +107,7 @@ export const Departures = () => {
 
   return (
     <div className="departures">
-      <h2>TRANSPORT DEPARTURES</h2>
+      <h2>Transport Departures</h2>
       <table>
         <thead>
           <tr>

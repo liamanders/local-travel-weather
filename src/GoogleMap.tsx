@@ -25,7 +25,7 @@ export default function GoogleMap() {
   return (
     <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
       <div style={{ height: "100vh", width: "100%" }}>
-        <Map zoom={9} center={position} mapId={import.meta.env.VITE_MAP_ID}>
+        <Map zoom={15} center={position} mapId={import.meta.env.VITE_MAP_ID}>
           <AdvancedMarker position={position} onClick={() => setOpen(true)}>
             <Pin background={"grey"} borderColor={"green"} />
           </AdvancedMarker>

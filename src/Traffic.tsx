@@ -30,26 +30,24 @@ function DisplayTrafficInfo({ trafficData }: DisplayTrafficInfoProps) {
   }
 
   return (
-    <div>
-      <table className="traffic-table">
-        <thead>
-          <tr>
-            <th>Road Number</th>
-            <th>Address</th>
-            <th>Cause</th>
+    <table className="traffic-table">
+      <thead>
+        <tr>
+          <th>Road Number</th>
+          <th>Address</th>
+          <th>Cause</th>
+        </tr>
+      </thead>
+      <tbody>
+        {trafficData.map((item, index) => (
+          <tr key={index}>
+            <td>{item.RoadNumber}</td>
+            <td>{item.LocationDescriptor}</td>
+            <td>{item.TrafficRestrictionType}</td>
           </tr>
-        </thead>
-        <tbody>
-          {trafficData.map((item, index) => (
-            <tr key={index}>
-              <td>{item.RoadNumber}</td>
-              <td>{item.LocationDescriptor}</td>
-              <td>{item.TrafficRestrictionType}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </table>
   );
 }
 

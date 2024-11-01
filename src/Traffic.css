@@ -1,7 +1,16 @@
+.traffic {
+  margin: 0 15px 15px;
+}
+
 .traffic-table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+  margin: 20px 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+  overflow: hidden;
 }
 
 .traffic-table th,
@@ -12,7 +21,7 @@
 }
 
 .traffic-table th {
-  background-color: #4caf50;
+  background-color: #6fa2f6;
   color: white;
 }
 
@@ -28,8 +37,8 @@
   font-size: 16px;
 }
 
-h2 {
-  color: #ece6e6;
-  font-size: 24px;
-  margin-bottom: 20px;
+@media (max-width: 600px) {
+  .traffic-table td {
+    font-size: 12px;
+  }
 }
