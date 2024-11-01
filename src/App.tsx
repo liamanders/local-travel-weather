@@ -18,7 +18,6 @@ function App() {
         <GeoCoding />
       </header>
       <main>
-        <div className="divider"></div>
         {location.latitude && location.longitude ? (
           <div className="genContainer">
             <div className="transportCont">
@@ -28,7 +27,7 @@ function App() {
               <Weather />
             </div>
             <div className="trafficCont">
-              <div className="traffic">
+              <div className="traffic-data">
                 <Traffic />
               </div>
               <div className="google-map">
