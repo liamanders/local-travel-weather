@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { LocationContext } from "./LocationContext";
-import "./traffic.css";
+import "./Traffic.css";
 
 // Defining data structure for traffic information
 interface TrafficData {
