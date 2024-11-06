@@ -30,10 +30,10 @@ function App() {
               <div className="traffic-data">
                 <Traffic />
               </div>
-              <div className="google-map">
+            </div>
+            <div className="google-map">
                 <GoogleMap />
               </div>
-            </div>
           </div>
         ) : (
           <p>Please enter an address to see nearby information.</p>
