@@ -1,50 +1,21 @@
-# React + TypeScript + Vite
+Group Project - Week 1 Progress - [Dates: 10/07 - 10/11]
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Overview
+This week was focused on setting up the project structure and organizing tasks among team members. The primary goal was to get everyone familiar with their responsibilities and begin initial work on core components.
 
-Currently, two official plugins are available:
+Highlights
+•	Successfully set up the project environment, installed packages and repository. The project dashboard is updated.
+•	Divided tasks between team members to ensure efficient collaboration.
+•	Liam began building the input form and integrated it with a geocoding API to retrieve coordinates based on user-provided addresses.
+•	Gloria, Madhuri and Suresh started designing their respective components, laying the foundation for upcoming work.
+Challenges
+•	Some team members encountered minor issues with coordinating design elements and aligning on initial styles. Regular check-ins were implemented to address this.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Lessons Learned
+•	Early task delegation was beneficial in getting everyone actively involved from the start.
+•	Realized the importance of consistent communication, especially for design decisions, to maintain a cohesive look and feel.
+Plans for Next Week
+•	Liam will complete the input form and refine the geocoding API integration.
+•	Gloria, Madhuri and Suresh will finalize designs and start implementing basic functionalities in their components.
+•	Schedule a team review to discuss progress and resolve any challenges encountered in Week 1.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
