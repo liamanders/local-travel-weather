@@ -198,7 +198,8 @@ main {
   display: flex;
 }
 .traffic-data {
-  max-width: 790px;
+  max-width: 730px;
+  padding-right: 4rem;
 }
 .google-map {
 width: 350px;
