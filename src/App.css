@@ -5,17 +5,15 @@
   font-size: 1.4rem;
   text-align: center;
   color: #333;
-
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 2.8em;
   line-height: 1.1;
-  
 }
 
 h2 {
-  color: #5e5c5c;
+  color: rgb(126, 225, 255);
   font-size: 1.4rem;
   margin-bottom: 10px;
 }
@@ -173,7 +171,8 @@ main {
   width: 100%;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: (30rem, 1fr);
+
   gap: 7px;
   background-color: #f7f9fc;
   border-radius: 5px;
@@ -189,8 +188,6 @@ main {
 
 .transportCont {
   grid-area: 1 / 1 / 2 / 2;
-  flex-grow: 15;
-  
 }
 .localCont {
   grid-area: 1 / 2 / 2 / 3;
@@ -220,7 +217,7 @@ main {
     gap: 1rem; /* Space between logo and title */
   }
 
-  .search-form:hover input {
+  .search-form input {
     width: 80%;
   }
 
@@ -243,8 +240,7 @@ main {
   .transportCont,
   .localCont,
   .trafficCont {
-    width: 100%;
-    margin: 0.5rem 0;
+    width: 90%;
   }
 
 
