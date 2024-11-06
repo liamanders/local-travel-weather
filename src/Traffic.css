@@ -1,10 +1,10 @@
 .traffic {
-  margin: 0 15px 15px;
+  margin: 0 auto;
 }
 
 .traffic-table {
   width: 100%;
-  margin: 20px 0;
+  margin: 0 auto;
   border-collapse: separate;
   border-spacing: 0;
   font-size: 14px;
@@ -37,8 +37,16 @@
   font-size: 16px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .traffic-table td {
     font-size: 12px;
+  }
+
+  .traffic {
+    margin: 0 15px 15px
+  }
+
+  .traffic-table {
+    margin: 20px 0;
   }
 }

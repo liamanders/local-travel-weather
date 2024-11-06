@@ -123,14 +123,14 @@ a:hover {
 }
 
 .search-form input {
-  border: none;
   background: transparent;
   font-size: 1rem;
   outline: none;
-  width: 0rem;
+  width: 20rem;
   color: black;
   border-radius: 2rem;
   padding: 10px 20px;
+  border-color: rgb(126, 225, 255);
   
 
   &::placeholder {
@@ -139,13 +139,10 @@ a:hover {
   }
 
   &:focus {
-    width: 20rem;
     border: 1px solid black;
-    border-color: rgb(126, 225, 255);
   }
 
   &:hover {
-    width: 20rem;
     border: 1px solid black;
     border-color: rgb(126, 225, 255);
   }
@@ -174,35 +171,40 @@ main {
 
 .genContainer {
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: repeat(2, 1fr);
   gap: 7px;
   background-color: #f7f9fc;
   border-radius: 5px;
-  justify-content: space-between;
 }
 
-.transportCont,
+.tarnsportCont,
 .localCont,
 .trafficCont {
   border-radius: 5px;
-  flex: 1 1 30%;
   margin: 5px;
   padding: 1rem;
 }
 
 .transportCont {
+  grid-area: 1 / 1 / 2 / 2;
   flex-grow: 15;
+  
 }
+.localCont {
+  grid-area: 1 / 2 / 2 / 3;
+}
+
 .trafficCont {
   display: flex;
+  grid-area: 2 / 1 / 3 / 2;
 }
-.traffic-data {
-  max-width: 730px;
-  padding-right: 4rem;
-}
+
 .google-map {
-width: 350px;
+  grid-area: 2 / 2 / 3 / 3;
+  margin: 3rem auto;
+  width: 80%;
 }
 /* Mobile Responsive Layout */
 @media (max-width: 768px) {
@@ -233,6 +235,8 @@ width: 350px;
   }
 
   .genContainer {
+    display: flex;
+    flex-direction: column;
     width: fit-content;
   }
 
@@ -243,11 +247,6 @@ width: 350px;
     margin: 0.5rem 0;
   }
 
-  .trafficCont {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-  }
 
   .title {
     margin: 0;
