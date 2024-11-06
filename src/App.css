@@ -172,6 +172,7 @@ main {
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: (30rem, 1fr);
+
   gap: 7px;
   background-color: #f7f9fc;
   border-radius: 5px;
@@ -187,7 +188,6 @@ main {
 
 .transportCont {
   grid-area: 1 / 1 / 2 / 2;
-  
 }
 .localCont {
   grid-area: 1 / 2 / 2 / 3;
