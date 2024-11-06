@@ -1,8 +1,15 @@
-#root {
-  max-width: 100vw;
-  padding: 2rem;
+:root {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+}
 
-  font-size: 1.4rem;
+body {
+  padding: 2rem;
+  margin: 0;
+  min-height: 100vh;
+
+  font-size: 1.2rem;
   text-align: center;
   color: #333;
   background-color: white;
@@ -115,6 +122,10 @@ a:hover {
   padding: 10px;
   transition: 0.8s;
   box-shadow: 0 0 15px hsla(0, 0%, 100%, 0.725);
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
 }
 
 .search-form:hover input {
@@ -150,9 +161,9 @@ a:hover {
 }
 
 .search-form button {
-  border-color: transparent;
+  border: 1px solid rgba(126, 225, 255, 0.2);
   border-radius: 2rem;
-  font-weight: 600;
+  font-weight: 400;
   background-color: transparent;
   color: rgb(218, 178, 49);
   cursor: pointer;
@@ -195,10 +206,10 @@ main {
 
 /* Mobile Responsive Layout */
 @media (max-width: 768px) {
-  #root {
+  body {
     overflow-x: hidden;
     padding: 1rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   .header {
@@ -207,11 +218,16 @@ main {
     gap: 1rem; /* Space between logo and title */
   }
 
-  .search-form:hover input {
-    width: 80%;
+  .search-form {
+    flex-direction: column;
+    align-items: center;
   }
 
   .search-form input {
+    width: 80%;
+    border: 1px solid rgb(126, 225, 255);
+    font-size: 0.8rem;
+
     &:focus {
       width: 80%;
     }
@@ -219,6 +235,10 @@ main {
     &:hover {
       width: 80%;
     }
+  }
+
+  .search-form button {
+    width: 50%;
   }
 
   .genContainer {
@@ -230,6 +250,8 @@ main {
   .trafficCont {
     width: 100%;
     margin: 0.5rem 0;
+    display: flex;
+    justify-content: space-around;
   }
 
   .trafficCont {
